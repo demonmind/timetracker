@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fname: MyString
+  lname: MyString
+  id: MyString
+  status: MyString
+  type: 
+
+two:
+  fname: MyString
+  lname: MyString
+  id: MyString
+  status: MyString
+  type: 
