@@ -3,7 +3,7 @@ class CreateEmployees < ActiveRecord::Migration
     create_table :employees do |t|
       t.string :fname
       t.string :lname
-      t.string :id
+      t.string :uid
       t.string :status
       t.string :type
 

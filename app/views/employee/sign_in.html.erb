@@ -1,2 +1,8 @@
-<h1>Employee#sign_in</h1>
-<p>Find me in app/views/employee/sign_in.html.erb</p>
+<%= form_tag('/employee/dashboard', :method => :post) do %>
+  <div class="uidnumber">
+  	Employee ID: <%= text_field_tag :emp_id %>
+  </div>
+  <div class="submit">
+  	<%= submit_tag 'Login' %>
+  </div>
+<% end %>
