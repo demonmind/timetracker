@@ -1,0 +1,17 @@
+<%= form_for('/createemployee', :method => :post) do %>
+  <div class="field">
+  	Employee ID: <%= text_field_tag "employee[uid]" %>
+  </div>
+  <div class="field">
+  	Employee First Name: <%= text_field_tag "employee[fname]" %>
+  </div>
+  <div class="field">
+  	Employee Last: <%= text_field_tag "employee[lname]" %>
+  </div>
+  <div class="field">
+  	Employee Type: <%= select_tag("employee[emp_type]", options_for_select([['Administrator', "admin"], ['Employee', "general"]])) %>
+  </div>
+  <div class="submit">
+  	<%= submit_tag 'Create' %>
+  </div>
+<% end %>
