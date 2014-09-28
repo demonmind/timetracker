@@ -1,31 +1,53 @@
 <div>Hello <%= @user.fname %>!</div>
 <div>You are clocked in! <%= link_to "Clock Out", clock_out_path(:emp_id => @user.uid) %></div>
-<%if @user.emp_type == "admin" %>
-	<div class="adduser">
-		<%= link_to "Add Employee", create_path %> | <%= link_to "Remove Employee", delete_path %>
-	</div>
-<% end %>
-
 <div class="clockintime">
 	You clocked in at <%= @user.timerecords.last.in_time.in_time_zone("Eastern Time (US & Canada)").strftime("%H:%M") %>
 </div>
+<%if @user.emp_type == "admin" %>
+	<div class="adduser">
+		<%= link_to "Add Employee", create_path, :class=>"btn btn-success" %> | <%= link_to "Remove Employee", delete_path, :class=>"btn btn-danger" %>
+	</div>
+<% end %>
+<br />
+
 <% if @employees.present? %>
-<div class="table-responsive">
-	<table class="table table-hover table-condensed">
-		<tr>
-	    <th>Employee ID</th>
-	    <th>First Name</th>
-	    <th>Last Name</th>
-	    <th>Time Last 7 days</th>
-  	</tr>
-		<% @employees.each do |emp| %>
-		  <tr>
-		  	<th><%= emp.uid %></th>
-    		<th><%= emp.fname %></th>
-    		<th><%= emp.lname %></th>
-   			<th><%= emp.last7hours %> hours, <%= emp.last7minutes %> minutes</th>
-		  </tr>
-		<% end %>
-	</table>
-</div>
+	<div class="table-responsive">
+		<table class="table table-hover table-condensed">
+			<tr>
+		    <th>Employee ID</th>
+		    <th>First Name</th>
+		    <th>Last Name</th>
+		    <th>Time Last 7 days</th>
+	  	</tr>
+			<% @employees.each do |emp| %>
+			  <tr>
+			  	<th><%= emp.uid %></th>
+	    		<th><%= emp.fname %></th>
+	    		<th><%= emp.lname %></th>
+	   			<th><%= emp.last7hours %> hours, <%= emp.last7minutes %> minutes</th>
+			  </tr>
+			<% end %>
+		</table>
+	</div>
+<% else %>
+	<div class="table-responsive">
+		<table class="table table-hover table-condensed">
+			<tr>
+		    <th>Date</th>
+		    <th>Clock In</th>
+		    <th>Clock out</th>
+		    <th>Time</th>
+	  	</tr>
+			<% (@user.timerecords.limit 7).order("id DESC").each do |tr| %>
+			<% if tr.out_time != nil %>
+			  <tr>
+			  	<th><%= tr.date %></th>
+	    		<th><%= tr.in_time.in_time_zone("Eastern Time (US & Canada)").strftime("%H:%M") %></th>
+	    		<th><%= tr.out_time.in_time_zone("Eastern Time (US & Canada)").strftime("%H:%M") %></th>
+	   			<th><%= ((tr.out_time - tr.in_time)/3600).to_i rescue nil %> hours, <%= (((tr.out_time - tr.in_time) % 3600).to_i/60).to_i rescue nil  %> minutes</th>
+			  </tr>
+			  <% end %>
+			<% end %>
+		</table>
+	</div>
 <% end %>
