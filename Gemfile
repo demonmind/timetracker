@@ -30,6 +30,8 @@ group :doc do
 end
 
 gem 'quiet_assets', group: :development
+gem 'rspec-rails'
+gem "capybara"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
