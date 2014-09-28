@@ -26,8 +26,7 @@ class EmployeeController < ApplicationController
     if params[:emp_id]
       @user = Employee.find_by_uid(params[:emp_id])
       @user.timerecords.last.update_attributes(out_time: Time.now)
-      flash[:notice] = "#{@user.fname} clocked out successfuly!"
-      redirect_to employee_sign_in_path
+      render "clockout"
     end
   end
 

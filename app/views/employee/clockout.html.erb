@@ -1,0 +1,21 @@
+<div class="container">
+<div>
+	<%= @user.fname %>, you have successfuly clocked out!
+</div>
+
+<div class="clockintime">
+	You clocked in at <%= @user.timerecords.last.in_time.in_time_zone("Eastern Time (US & Canada)").strftime("%H:%M") %>
+</div>
+
+<div class="clockouttime">
+	You clocked out at <%= @user.timerecords.last.out_time.in_time_zone("Eastern Time (US & Canada)").strftime("%H:%M") %>
+</div>
+
+<div> 
+	You have worked today <%= @user.hourstoday %> hours,  <%= @user.minutestoday %> minutes
+</div>
+
+
+<div>
+	You have worked <%= @user.last7hours %> hours, <%= @user.last7minutes %> minutes the last 7 days.
+</div>
