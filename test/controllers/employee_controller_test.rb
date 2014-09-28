@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "workflow", :type => :feature do
+describe "Employee", :type => :feature do
 
   it "clock users in" do
 		clockin_employee_general
@@ -33,6 +33,18 @@ describe "workflow", :type => :feature do
   	clockin_employee_general
 
     page.should_not have_content('All Employees Stats')
+  end
+
+  it "should not show Add Employee to regular employee" do
+    clockin_employee_general
+
+    page.should_not have_content("Add Employee")
+  end
+
+  it "should not show Remove Employee to regular employee" do
+    clockin_employee_general
+
+    page.should_not have_content("Remove Employes")
   end
 
   feature "Admin add or remove user" do
