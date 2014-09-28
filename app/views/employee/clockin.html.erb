@@ -1,2 +1,7 @@
 Hello <%= @user.fname %>!
-You just clocked in! <%= link_to "Clock Out", clock_out_path(:emp_id => @user.uid) %>
+You are clocked in! <%= link_to "Clock Out", clock_out_path(:emp_id => @user.uid) %>
+<%if @user.emp_type == "admin" %>
+	<div class="adduser">
+		<%= link_to "Add Employee", create_path %>
+	</div>
+<% end %>

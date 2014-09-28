@@ -7,6 +7,7 @@ class EmployeeController < ApplicationController
   	if params[:emp_id].present?
       @user = Employee.find_by_uid(params[:emp_id])
       if @user
+        session[:emp_id] = @user.uid
         @user.timerecords.create(date: Date.today, employee_id: @user.id, in_time: Time.now) unless clocked_in @user
         render 'clockin'
         if @user.emp_type == "admin"
@@ -32,7 +33,13 @@ class EmployeeController < ApplicationController
 
   def createemployee
     if params[:employee]
-      Employee.create(empparams)
+      @emp = Employee.create(empparams)
+      if @emp.id == nil
+        flash[:notice] = "Record Failed"
+      else
+        flash[:notice] = "#{@emp.fname} created successfuly!" 
+      end
+      redirect_to employee_dashboard_path(:emp_id => session[:emp_id])
     end
   end
 
