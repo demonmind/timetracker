@@ -33,7 +33,8 @@ All Employees Stats:<br />
 			<% end %>
 		</table>
 	</div>
-<% else %>
+<% end %>
+<% if @user.timerecords.present? %>
 My Stats: Last 7 Days<br />
 	<div class="table-responsive">
 		<table class="table table-hover table-condensed">
