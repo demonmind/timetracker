@@ -1,13 +1,19 @@
-<%= form_tag('/employee/dashboard',:class => "form-horizontal", :role=>"form", :method => :post) do %>
-  <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Employee ID</label>
-    <div class="col-sm-6">
-     <%= text_field_tag :emp_id, nil, :type => "text", :class => "form-control" %>
+<div class="homeimg">
+  TimeTracker<br />
+  <%= image_tag("timetrack.gif")%>
+</div>
+<div class="formwrapper">
+  <%= form_tag('/employee/dashboard',:class => "form-horizontal", :role=>"form", :method => :post) do %>
+    <div class="form-group">
+      <label for="inputEmail3" class="col-sm-2 control-label">Employee ID</label>
+      <div class="col-sm-8">
+       <%= text_field_tag :emp_id, nil, :type => "text", :class => "form-control" %>
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-6">
-      <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-8">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+      </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>

@@ -2,6 +2,7 @@ class Employee < ActiveRecord::Base
 	has_many :timerecords, :dependent => :destroy
 
 	validates_uniqueness_of :uid
+	validates_presence_of :uid
 
 	def timeday
 		(self.timerecords.last.out_time - self.timerecords.last.in_time)

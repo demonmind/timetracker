@@ -1,17 +1,33 @@
-<%= form_for('/createemployee', :method => :post) do %>
-  <div class="field">
-  	Employee ID: <%= text_field_tag "employee[uid]" %>
+<div class='homeimg'>Create Employee</div>
+
+<%= form_tag('/createemployee', :class => "form-horizontal", :role => "form", :method => :post) do %>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Employee ID: </label>
+    <div class="col-sm-6">
+  	  <%= text_field_tag "employee[uid]", nil, :class => "form-control" %>
+    </div>
   </div>
-  <div class="field">
-  	Employee First Name: <%= text_field_tag "employee[fname]" %>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">First Name: </label>
+    <div class="col-sm-6">
+      <%= text_field_tag "employee[fname]", nil, :class => "form-control" %>
+    </div>
   </div>
-  <div class="field">
-  	Employee Last: <%= text_field_tag "employee[lname]" %>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Last Name: </label>
+    <div class="col-sm-6">
+      <%= text_field_tag "employee[lname]", nil, :class => "form-control" %>
+    </div>
   </div>
-  <div class="field">
-  	Employee Type: <%= select_tag("employee[emp_type]", options_for_select([['Administrator', "admin"], ['Employee', "general"]])) %>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Type: </label>
+    <div class="col-sm-6">
+  	  <%= select_tag("employee[emp_type]", options_for_select([['Administrator', "admin"], ['Employee', "general"]])) %>
+    </div>
   </div>
-  <div class="submit">
-  	<%= submit_tag 'Create' %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-2">
+      <button type="submit" class="btn btn-primary btn-lg btn-block">Create</button>
+    </div>
   </div>
 <% end %>

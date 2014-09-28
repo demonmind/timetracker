@@ -1,5 +1,7 @@
+<div class='homeimg'>Dashboard<%if @user.emp_type == "admin" %> - Admin<% end %></div>
+
 <div>Hello <%= @user.fname %>!</div>
-<div>You are clocked in! <%= link_to "Clock Out", clock_out_path(:emp_id => @user.uid) %></div>
+<div>You are clocked in! <%= link_to "Clock Out", clock_out_path %></div>
 <div class="clockintime">
 	You clocked in at <%= @user.timerecords.last.in_time.in_time_zone("Eastern Time (US & Canada)").strftime("%H:%M") %>
 </div>
@@ -30,6 +32,7 @@
 		</table>
 	</div>
 <% else %>
+My Stats: Last 7 Days<br />
 	<div class="table-responsive">
 		<table class="table table-hover table-condensed">
 			<tr>
@@ -38,7 +41,7 @@
 		    <th>Clock out</th>
 		    <th>Time</th>
 	  	</tr>
-			<% (@user.timerecords.limit 7).order("id DESC").each do |tr| %>
+			<% (@user.timerecords.limit 8).order("id DESC").each do |tr| %>
 			<% if tr.out_time != nil %>
 			  <tr>
 			  	<th><%= tr.date %></th>

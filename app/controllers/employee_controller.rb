@@ -24,9 +24,10 @@ class EmployeeController < ApplicationController
   end
 
   def clock_out
-    if params[:emp_id]
-      @user = Employee.find_by_uid(params[:emp_id])
+    if session[:emp_id]
+      @user = Employee.find_by_uid(session[:emp_id])
       @user.timerecords.last.update_attributes(out_time: Time.now)
+      session[:emp_id]
       render "clockout"
     end
   end
@@ -35,7 +36,7 @@ class EmployeeController < ApplicationController
     if params[:employee] && request.post?
       @emp = Employee.create(empparams)
       if @emp.id == nil
-        flash[:notice] = "Record Failed"
+        flash[:alert] = "Employee Failed to Create"
       else
         flash[:notice] = "#{@emp.fname} created successfuly!" 
       end
