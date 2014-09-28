@@ -4,7 +4,7 @@ class Employee < ActiveRecord::Base
 	validates_uniqueness_of :uid
 
 	def timeday
-		(self.timerecords.last.updated_at - self.timerecords.last.created_at)
+		(self.timerecords.last.out_time - self.timerecords.last.in_time)
 	end
 
 	def hourstoday
@@ -16,7 +16,7 @@ class Employee < ActiveRecord::Base
 	end
 
 	def lastsev
-		tm = (self.timerecords.limit 7).order("id DESC").pluck("updated_at, created_at").map! {|x| x[0]-x[1]}
+		tm = (self.timerecords.order("id DESC").limit 7).pluck("out_time, in_time").map! {|x| x[0]-x[1]}
 		tm.reduce(0) do |elem, sum|
 		 	elem + sum
 		end
