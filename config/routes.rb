@@ -5,6 +5,8 @@ Timetracker::Application.routes.draw do
   match "createemployee" => "employee#createemployee", :via => [:get, :post], :as => :create
   match "clockout" => "employee#clock_out", :via => [:get, :post], :as => :clock_out
 
+  match "delemployee" => "employee#removeemployee", :via => [:get, :post], :as => :delete
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

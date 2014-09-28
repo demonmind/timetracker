@@ -9,10 +9,11 @@ class EmployeeController < ApplicationController
       if @user
         session[:emp_id] = @user.uid
         @user.timerecords.create(date: Date.today, employee_id: @user.id, in_time: Time.now) unless clocked_in @user
-        render 'clockin'
         if @user.emp_type == "admin"
-          @allemp = Employee.all
+          @employees = Employee.all
+          Rails.logger.debug @employees.inspect
         end
+        render 'clockin'
       else
         flash[:notice] = "Employee not found!"
         redirect_to employee_sign_in_path
@@ -31,13 +32,22 @@ class EmployeeController < ApplicationController
   end
 
   def createemployee
-    if params[:employee]
+    if params[:employee] && request.post?
       @emp = Employee.create(empparams)
       if @emp.id == nil
         flash[:notice] = "Record Failed"
       else
         flash[:notice] = "#{@emp.fname} created successfuly!" 
       end
+      redirect_to employee_dashboard_path(:emp_id => session[:emp_id])
+    end
+  end
+
+  def removeemployee
+    @users = Employee.all(:conditions => ["uid != ?", session[:emp_id]])
+    if params[:employee] && request.post?
+      @emp = Employee.find_by_uid(params[:employee][:emp_id]).destroy
+      flash[:notice] = "#{@emp.fname} deleted successfuly!"
       redirect_to employee_dashboard_path(:emp_id => session[:emp_id])
     end
   end

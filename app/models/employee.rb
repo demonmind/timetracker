@@ -1,5 +1,5 @@
 class Employee < ActiveRecord::Base
-	has_many :timerecords
+	has_many :timerecords, :dependent => :destroy
 
 	validates_uniqueness_of :uid
 

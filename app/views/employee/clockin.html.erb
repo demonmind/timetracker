@@ -2,10 +2,30 @@
 <div>You are clocked in! <%= link_to "Clock Out", clock_out_path(:emp_id => @user.uid) %></div>
 <%if @user.emp_type == "admin" %>
 	<div class="adduser">
-		<%= link_to "Add Employee", create_path %>
+		<%= link_to "Add Employee", create_path %> | <%= link_to "Remove Employee", delete_path %>
 	</div>
 <% end %>
 
 <div class="clockintime">
 	You clocked in at <%= @user.timerecords.last.in_time.in_time_zone("Eastern Time (US & Canada)").strftime("%H:%M") %>
 </div>
+<% if @employees.present? %>
+<div class="table-responsive">
+	<table class="table table-hover table-condensed">
+		<tr>
+	    <th>Employee ID</th>
+	    <th>First Name</th>
+	    <th>Last Name</th>
+	    <th>Time Last 7 days</th>
+  	</tr>
+		<% @employees.each do |emp| %>
+		  <tr>
+		  	<th><%= emp.uid %></th>
+    		<th><%= emp.fname %></th>
+    		<th><%= emp.lname %></th>
+   			<th><%= emp.last7hours %> hours, <%= emp.last7minutes %> minutes</th>
+		  </tr>
+		<% end %>
+	</table>
+</div>
+<% end %>

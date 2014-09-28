@@ -1,0 +1,8 @@
+<%= form_for('/delemployee', :method => :post) do %>
+  <div class="field">
+  	Employee Name: <%= select_tag("employee[emp_id]", options_for_select(@users.map {|x| [x.fname, x.uid]})) %>
+  </div>
+  <div class="submit">
+  	<%= submit_tag 'Delete' %>
+  </div>
+<% end %>
