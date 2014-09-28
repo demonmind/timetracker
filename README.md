@@ -1,7 +1,7 @@
 timetracker
 ===========
 
-The project assumes a user clocks in/out once during the day for simplicity.
+The project assumes a user clocks in/out once during the day for simplicity. Also the project does not include heavy css, leverage bootstrap.
 
 On home page if user enters employee id and clicks sign in, the user will be automatically clocked in. If user has been clocked in previously the user will just see the dashboard with the info related to him.
 
