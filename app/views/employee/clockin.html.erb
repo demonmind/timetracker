@@ -1,9 +1,10 @@
 <div class='homeimg'>Dashboard<%if @user.emp_type == "admin" %> - Admin<% end %></div>
-
-<div>Hello <%= @user.fname %>!</div>
-<div>You are clocked in! <%= link_to "Clock Out", clock_out_path %></div>
-<div class="clockintime">
-	You clocked in at <%= @user.timerecords.last.in_time.in_time_zone("Eastern Time (US & Canada)").strftime("%H:%M") %>
+<div class="info">
+	<div>Hello <%= @user.fname %>!</div>
+	<div>You are clocked in! <%= link_to "Clock Out", clock_out_path, :class => "btn btn-danger" %></div>
+	<div class="clockintime">
+		You clocked in at <%= @user.timerecords.last.in_time.in_time_zone("Eastern Time (US & Canada)").strftime("%H:%M") %>
+	</div>
 </div>
 <%if @user.emp_type == "admin" %>
 	<div class="adduser">

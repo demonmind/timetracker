@@ -24,7 +24,22 @@
 	color: rgb(63, 51, 99);
  }
 
-#employee_emp_type{
+ .logout{
+ 	width: 100%;
+	text-align: center;
+	margin-bottom: 25px;
+	font-size: 20px;
+	color: rgb(63, 51, 99);
+ }
+
+ .info{
+ 	width: 100%;
+	margin-bottom: 25px;
+	font-size: 20px;
+	color: rgb(63, 51, 99);
+ }
+
+#employee_emp_type, #employee_emp_id{
   width: 200px;
   margin-top: 8px;
 }

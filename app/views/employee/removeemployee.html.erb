@@ -1,10 +1,19 @@
 <div class='homeimg'>Delete Employee</div>
 
-<%= form_tag('/delemployee', :method => :post) do %>
-  <div class="field">
-  	Employee Name: <%= select_tag("employee[emp_id]", options_for_select(@users.map {|x| [x.fname, x.uid]})) %>
+<%= form_tag('/delemployee',:class => "form-horizontal", :role => "form", :method => :post) do %>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Employee Name:  </label>
+    <div class="col-sm-6">
+  	  <%= select_tag("employee[emp_id]", options_for_select(@users.map {|x| [x.fname, x.uid]})) %>
+    </div>
   </div>
-  <div class="submit">
-  	<%= submit_tag 'Delete' %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-2">
+      <button type="submit" class="btn btn-danger btn-lg btn-block">Delete</button>
+    </div>
   </div>
 <% end %>
+
+<div class="col-sm-offset-2 col-sm-2">
+  <button class="btn btn-primary btn-lg btn-block" onclick="window.history.back()">Cancel</button>
+</div>
