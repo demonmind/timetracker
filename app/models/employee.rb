@@ -16,9 +16,14 @@ class Employee < ActiveRecord::Base
 	end
 
 	def lastsev
-		tm = (self.timerecords.order("id DESC").limit 7).pluck("out_time, in_time").map! {|x| x[0]-x[1]}
-		tm.reduce(0) do |elem, sum|
-		 	elem + sum
+		tm = (self.timerecords.order("id DESC").limit 8).pluck("out_time, in_time").map! {|x| x[0].to_i - x[1].to_i}
+		tm.each do |c| 
+			if c < 0 
+				tm.delete(c) 
+			end 
+		end
+		tm.reduce(0) do |sum, elem|
+		 	sum + elem
 		end
 	end
 
