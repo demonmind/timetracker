@@ -4,7 +4,7 @@ class EmployeeController < ApplicationController
   end
 
   def dashboard
-  	if params[:emp_id].present?
+    if params[:emp_id].present?
       @user = Employee.find_by_uid(params[:emp_id])
       if @user
         session[:emp_id] = @user.uid
@@ -18,9 +18,9 @@ class EmployeeController < ApplicationController
         flash[:notice] = "Employee not found!"
         redirect_to employee_sign_in_path
       end
-  	else
-  		redirect_to employee_sign_in_path
-  	end
+    else
+      redirect_to employee_sign_in_path
+    end
   end
 
   def clock_out
